@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"strings"
 )
 
 const (
@@ -26,12 +27,19 @@ func main() {
 }
 
 func index(res http.ResponseWriter, req *http.Request) {
-	contents, err := ioutil.ReadFile("./static/index.html")
-	if err != nil {
-		fmt.Fprintf(res, "404")
-		return
+	url := req.URL.String()
+
+	if strings.EqualFold("/", url) {
+		contents, err := ioutil.ReadFile("./static/index.html")
+		if err != nil {
+			fmt.Fprintf(res, "404")
+			return
+		}
+		fmt.Fprintf(res, "%s\n", contents)
+	} else {
+		fmt.Fprint(res, "404 not found:\n\n")
 	}
-	fmt.Fprintf(res, "%s\n", contents)
+
 }
 
 func env(res http.ResponseWriter, req *http.Request) {
@@ -40,4 +48,5 @@ func env(res http.ResponseWriter, req *http.Request) {
 	for _, e := range env {
 		fmt.Fprintln(res, e)
 	}
+
 }
