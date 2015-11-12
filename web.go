@@ -1,7 +1,9 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
+	"go_test/controller/common"
 	"io/ioutil"
 	"net/http"
 	"os"
@@ -13,9 +15,18 @@ const (
 	PortVar = "VCAP_APP_PORT"
 )
 
+type Person struct {
+	Name string `json:"name"`
+}
+
+func test() {
+
+}
+
 func main() {
 	http.HandleFunc("/", index)
 	http.HandleFunc("/env", env)
+	http.HandleFunc("/ee", commonHandler)
 	var port string
 	if port = os.Getenv(PortVar); port == "" {
 		port = "8080"
@@ -24,6 +35,15 @@ func main() {
 		panic(err)
 	}
 
+}
+
+func commonHandler(res http.ResponseWriter, req *http.Request) {
+
+	var per Person
+	str := `{"Name":"seee"}`
+	json.Unmarshal([]byte(str), &per)
+	fmt.Fprint(res, per)
+	common.DoPost(res, req)
 }
 
 func index(res http.ResponseWriter, req *http.Request) {
