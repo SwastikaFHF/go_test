@@ -1,11 +1,9 @@
 package main
 
 import (
-	"fmt"
-	"io/ioutil"
+	"go_test/controller"
 	"net/http"
 	"os"
-	"strings"
 )
 
 const (
@@ -15,7 +13,6 @@ const (
 
 func main() {
 	http.HandleFunc("/", index)
-	http.HandleFunc("/env", env)
 	var port string
 	if port = os.Getenv(PortVar); port == "" {
 		port = "8080"
@@ -27,26 +24,5 @@ func main() {
 }
 
 func index(res http.ResponseWriter, req *http.Request) {
-	url := req.URL.String()
-
-	if strings.EqualFold("/", url) {
-		contents, err := ioutil.ReadFile("./static/index.html")
-		if err != nil {
-			fmt.Fprintf(res, "404")
-			return
-		}
-		fmt.Fprintf(res, "%s\n", contents)
-	} else {
-		fmt.Fprint(res, "404 not found:\n\n")
-	}
-
-}
-
-func env(res http.ResponseWriter, req *http.Request) {
-	fmt.Fprint(res, "System Environment:\n\n")
-	env := os.Environ()
-	for _, e := range env {
-		fmt.Fprintln(res, e)
-	}
-
+	controller.Index(res, req)
 }
