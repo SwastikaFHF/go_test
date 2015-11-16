@@ -24,4 +24,8 @@ func env(res http.ResponseWriter, req *http.Request) {
 		fmt.Fprintln(res, e)
 	}
 
+)
+
+func DoPost(res http.ResponseWriter, req *http.Request) {
+	fmt.Fprint(res, "CommonHandler start")
 }

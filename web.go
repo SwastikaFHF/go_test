@@ -3,7 +3,6 @@ package main
 import (
 	"go_test/controller"
 	"net/http"
-	"os"
 )
 
 const (
