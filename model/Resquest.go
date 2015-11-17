@@ -5,6 +5,6 @@ import (
 )
 
 type Request struct {
-	header     request.RequestHeader
-	clientInfo request.ClientInfo
+	Header     request.RequestHeader `json:"header"`
+	ClientInfo request.ClientInfo    `json:"clientInfo"`
 }

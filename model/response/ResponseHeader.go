@@ -1,7 +1,7 @@
 package response
 
 type ResponseHeader struct {
-	rspType string
-	rspCode string
-	rspMsg  string
+	RspType string `json:"rspType"`
+	RspCode string `json:"rspCode"`
+	RspMsg  string `json:"rspMsg"`
 }

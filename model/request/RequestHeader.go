@@ -1,9 +1,9 @@
 package request
 
 type RequestHeader struct {
-	accountID   string
-	digitalSign string
-	reqTime     string
-	serviceName string
-	version     string
+	AccountID   string `json:"accountID"`
+	DigitalSign string `json:"digitalSign"`
+	ReqTime     string `json:"reqTime"`
+	ServiceName string `json:"serviceName"`
+	Version     string `json:"version"`
 }

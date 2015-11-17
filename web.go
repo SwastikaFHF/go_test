@@ -2,7 +2,9 @@ package main
 
 import (
 	"go_test/controller"
+	"go_test/controller/common"
 	"net/http"
+	"os"
 )
 
 const (
@@ -11,7 +13,8 @@ const (
 )
 
 func main() {
-	http.HandleFunc("/", index)
+	http.HandleFunc("/", controller.Index)
+	http.HandleFunc("/getimage", common.GetLoadImage)
 	var port string
 	if port = os.Getenv(PortVar); port == "" {
 		port = "8080"
@@ -20,8 +23,4 @@ func main() {
 		panic(err)
 	}
 
-}
-
-func index(res http.ResponseWriter, req *http.Request) {
-	controller.Index(res, req)
 }

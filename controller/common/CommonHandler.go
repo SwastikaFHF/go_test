@@ -1,31 +1,29 @@
 package common
 
 import (
+	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"go_test/model"
 	"net/http"
-	"strings"
 )
 
 type Request struct {
-	RequestHeader RequestHeader `json:"header"`
+	model.Request
 }
 
 type Response struct {
+	model.Response
+	body ResponseBody
 }
 
-type RequestHeader struct {
+type ResponseBody struct {
+	url string
 }
 
-func env(res http.ResponseWriter, req *http.Request) {
-	fmt.Fprint(res, "System Environment:\n\n")
-	env := os.Environ()
-	for _, e := range env {
-		fmt.Fprintln(res, e)
+func GetLoadImage(res http.ResponseWriter, req *http.Request) {
+	var respStr Response
+	respStr.Header.RspCode, respStr.Header.RspMsg, respStr.body.url = "0000", "获取数据成功", "htttp://www.baidu.com"
+	if b, err := json.Marshal(respStr); err == nil {
+		fmt.Fprint(res, string(b))
 	}
-
-)
-
-func DoPost(res http.ResponseWriter, req *http.Request) {
-	fmt.Fprint(res, "CommonHandler start")
 }

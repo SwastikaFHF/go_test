@@ -5,5 +5,5 @@ import (
 )
 
 type Response struct {
-	header response.ResponseHeader
+	Header response.ResponseHeader `json:"header"`
 }
