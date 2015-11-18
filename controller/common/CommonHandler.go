@@ -26,4 +26,5 @@ func GetLoadImage(res http.ResponseWriter, req *http.Request) {
 	if b, err := json.Marshal(respStr); err == nil {
 		fmt.Fprint(res, string(b))
 	}
+	req.Header.Get(key)
 }
