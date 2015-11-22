@@ -3,7 +3,7 @@ package controller
 import (
 	"crypto/md5"
 	"encoding/hex"
-	"fmt"
+	// "fmt"
 	"strings"
 )
 
