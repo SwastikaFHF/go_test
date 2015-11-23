@@ -15,6 +15,8 @@ const (
 func main() {
 	http.HandleFunc("/", controller.Index)
 	http.HandleFunc("/getimage", common.GetLoadImage)
+	http.HandleFunc("/html", controller.GetFormView)
+	http.HandleFunc("/htmlvalue", controller.GetFormValue)
 	var port string
 	if port = os.Getenv(PortVar); port == "" {
 		port = "8080"
