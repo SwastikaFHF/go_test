@@ -1,8 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"go_test/controller"
 	"go_test/controller/common"
+	"log"
 	"net/http"
 	"os"
 )
@@ -24,5 +26,4 @@ func main() {
 	if err := http.ListenAndServe(":"+port, nil); err != nil {
 		panic(err)
 	}
-
 }
