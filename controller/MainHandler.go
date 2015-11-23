@@ -3,6 +3,7 @@ package controller
 import (
 	"crypto/md5"
 	"encoding/hex"
+	"strings"
 )
 
 const (

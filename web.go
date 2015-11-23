@@ -1,10 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"go_test/controller"
 	"go_test/controller/common"
-	"log"
 	"net/http"
 	"os"
 )
