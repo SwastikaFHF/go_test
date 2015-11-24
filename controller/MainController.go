@@ -1,22 +1,28 @@
 package controller
 
 import (
-	"fmt"
 	"io/ioutil"
-	"net/http"
 	"strings"
 )
 
-func Index(res http.ResponseWriter, req *http.Request) {
-	url := req.URL.String()
+type MainController struct {
+	Controller
+}
+
+func (this *MainController) Get() {
+	url := this.Ctx.Req.URL.String()
 	if strings.EqualFold("/", url) {
-		contents, err := ioutil.ReadFile("./static/index.html")
+		_, err := ioutil.ReadFile("./static/index.html")
 		if err != nil {
-			fmt.Fprintf(res, "404")
+			this.Ctx.WriteString("404")
 			return
 		}
-		fmt.Fprintf(res, "%s\n", contents)
+		// this.Ctx.WriteString(contents)
 	} else {
-		fmt.Fprint(res, "404 not found:\n\n")
+		this.Ctx.WriteString("404 not found:\n\n")
 	}
+}
+
+func (this *MainController) Post() {
+
 }
