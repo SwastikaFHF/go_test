@@ -2,7 +2,8 @@ package controller
 
 import (
 	"io/ioutil"
-	"strings"
+	"log"
+	// "strings"
 )
 
 type MainController struct {
@@ -10,16 +11,11 @@ type MainController struct {
 }
 
 func (this *MainController) Get() {
-	url := this.Ctx.Req.URL.String()
-	if strings.EqualFold("/", url) {
-		_, err := ioutil.ReadFile("./static/index.html")
-		if err != nil {
-			this.Ctx.WriteString("404")
-			return
-		}
-		// this.Ctx.WriteString(contents)
-	} else {
-		this.Ctx.WriteString("404 not found:\n\n")
+	log.Println("get !!!")
+	_, err := ioutil.ReadFile("./static/index.html")
+	if err != nil {
+		this.Ctx.WriteString("404")
+		return
 	}
 }
 
