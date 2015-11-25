@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"text/template"
 )
 
 func GetFormView(res http.ResponseWriter, req *http.Request) {

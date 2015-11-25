@@ -2,10 +2,10 @@ package main
 
 import (
 	"go_test/controller"
-	// "go_test/controller/common"
+	"go_test/core"
 )
 
 func main() {
-	controller.Router("/", &controller.MainController{})
-	controller.Run()
+	core.Router("/", &controller.MainController{})
+	core.Run()
 }

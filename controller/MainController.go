@@ -1,24 +1,22 @@
 package controller
 
 import (
+	"go_test/core"
 	"io/ioutil"
 	"log"
-	// "strings"
+	"net/http"
 )
 
 type MainController struct {
-	Controller
+	core.Controller
 }
 
-func (this *MainController) Get() {
-	log.Println("get !!!")
-	_, err := ioutil.ReadFile("./static/index.html")
+func (*MainController) Get(rep http.ResponseWriter, res *http.Request) {
+	content, err := ioutil.ReadFile("../go_test/static/index.html")
 	if err != nil {
-		this.Ctx.WriteString("404")
+		log.Println(err.Error())
 		return
+	} else {
+		rep.Write(content)
 	}
-}
-
-func (this *MainController) Post() {
-
 }
