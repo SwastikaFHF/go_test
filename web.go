@@ -7,5 +7,6 @@ import (
 
 func main() {
 	core.Router("/", &controller.MainController{})
+	core.Router("/welcome", &controller.Welcome{})
 	core.Run()
 }
