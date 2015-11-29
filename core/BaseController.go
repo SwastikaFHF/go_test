@@ -1,9 +1,8 @@
 package core
 
 import (
-	// "html/template"
-	"io/ioutil"
-	"log"
+	"encoding/json"
+	"html/template"
 	"net/http"
 )
 
@@ -11,29 +10,23 @@ type Controller struct {
 	Ctx      *Context
 	TplNames string
 	Data     map[interface{}]interface{}
+	Json     interface{}
 }
 
 type DealHttpInterface interface {
 	Init(context *Context)
 	Post()
 	Get()
-	HandleTpl(context *Context)
+	HandleTpl()
 }
 
-func (this *Controller) HandleTpl(ctx *Context) {
+func (this *Controller) HandleTpl() {
 	if this.TplNames != "" {
-		// t, _ := template.New("html").ParseFiles(this.TplNames)
-		// // data := make(map[string]interface{})
-		// // data["Website"] = "Website"
-		// // data["Email"] = "Email"
-		// t.ExecuteTemplate(os.Stdout, "html", this.Data)
-
-		content, err := ioutil.ReadFile(this.TplNames)
-		if err != nil {
-			log.Println(err.Error())
-			return
-		} else {
-			ctx.WriteByte(content)
+		t, _ := template.ParseFiles(this.TplNames)
+		t.Execute(this.Ctx.ResponseWriter, this.Data)
+	} else if this.Json != nil {
+		if b, err := json.Marshal(this.Json); err == nil {
+			this.Ctx.WriteByte(b)
 		}
 	}
 }

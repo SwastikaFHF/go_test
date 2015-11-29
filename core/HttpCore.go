@@ -41,10 +41,10 @@ func (this *Controller) ServeHTTP(rep http.ResponseWriter, res *http.Request) {
 		switch res.Method {
 		case "GET":
 			h.Get()
-			h.HandleTpl(ctx)
+			h.HandleTpl()
 		case "POST":
 			h.Post()
-			h.HandleTpl(ctx)
+			h.HandleTpl()
 		default:
 			rep.Write([]byte("No matched http type"))
 		}
