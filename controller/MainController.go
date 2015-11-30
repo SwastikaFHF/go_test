@@ -9,6 +9,6 @@ type MainController struct {
 }
 
 func (this *MainController) Get() {
-	// this.TplNames = "../go_test/static/index.html"
-	this.Ctx.WriteString("hello world")
+	this.TplNames = "../go_test/view/index.tpl"
+	// this.Ctx.WriteString("hello world")
 }
