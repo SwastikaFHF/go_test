@@ -3,18 +3,27 @@ package core
 import (
 	"log"
 	"net/http"
+	"path"
+	"strings"
 	"time"
 )
 
 var mux map[string]DealHttpInterface
+var staticDir map[string]string
 
 func init() {
 	mux = make(map[string]DealHttpInterface)
+	staticDir = make(map[string]string)
 }
 
 //设置路由
 func Router(url string, controller DealHttpInterface) {
 	mux[url] = controller
+}
+
+//设置静态文件目录
+func SetStaticPath(urlPath string, staticPath string) {
+	staticDir[urlPath] = staticPath
 }
 
 //开始运行监听
@@ -32,6 +41,17 @@ func Run() {
 }
 
 func (this *Controller) ServeHTTP(rep http.ResponseWriter, res *http.Request) {
+	//开始处理静态文件
+	requestPath := path.Clean(res.URL.Path)
+	sli := strings.Split(requestPath, "/")
+	prefix := "/" + sli[1]
+	if localdir, ok := staticDir[prefix]; ok {
+		file := path.Join(localdir, requestPath[len(prefix):])
+		http.ServeFile(rep, res, file)
+		return
+	}
+
+	//开始处理http请求
 	if h, ok := mux[res.URL.String()]; ok {
 		ctx := &Context{
 			ResponseWriter: rep,
