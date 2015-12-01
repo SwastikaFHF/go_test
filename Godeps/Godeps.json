@@ -1,5 +1,8 @@
 {
 	"ImportPath": "go_test",
 	"GoVersion": "go1.5.1",
+	"Packages": [
+		"./..."
+	],
 	"Deps": []
 }
