@@ -3,8 +3,8 @@ package core
 import (
 	"log"
 	"net/http"
-	// "path"
-	// "strings"
+	"path"
+	"strings"
 	"time"
 )
 
@@ -28,9 +28,9 @@ func SetStaticPath(urlPath string, staticPath string) {
 
 //开始运行监听
 func Run() {
-	log.Println("run")
+	log.Println("My server is running !!!")
 	server := http.Server{
-		Addr:        ":8080",
+		Addr:        ":80", //默认80端口
 		Handler:     &Controller{},
 		ReadTimeout: 5 * time.Second,
 	}
@@ -42,14 +42,14 @@ func Run() {
 
 func (this *Controller) ServeHTTP(rep http.ResponseWriter, res *http.Request) {
 	//开始处理静态文件
-	// requestPath := path.Clean(res.URL.Path)
-	// sli := strings.Split(requestPath, "/")
-	// prefix := "/" + sli[1]
-	// if localdir, ok := staticDir[prefix]; ok {
-	// 	file := path.Join(localdir, requestPath[len(prefix):])
-	// 	http.ServeFile(rep, res, file)
-	// 	return
-	// }
+	requestPath := path.Clean(res.URL.Path)
+	sli := strings.Split(requestPath, "/")
+	prefix := "/" + sli[1]
+	if localdir, ok := staticDir[prefix]; ok {
+		file := path.Join(localdir, requestPath[len(prefix):])
+		http.ServeFile(rep, res, file)
+		return
+	}
 
 	//开始处理http请求
 	if h, ok := mux[res.URL.String()]; ok {

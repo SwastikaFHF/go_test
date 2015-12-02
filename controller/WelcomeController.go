@@ -9,7 +9,7 @@ type Welcome struct {
 }
 
 func (this *Welcome) Get() {
-	this.TplNames = "../go_test/view/welcome.tpl"
+	this.TplNames = "view/welcome.tpl"
 	this.Data["Website"] = "Website"
 	this.Data["Email"] = "Email"
 }

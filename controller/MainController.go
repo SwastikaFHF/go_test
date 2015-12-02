@@ -2,6 +2,8 @@ package controller
 
 import (
 	"go_test/core"
+	"os"
+	"path"
 )
 
 type MainController struct {
@@ -9,6 +11,8 @@ type MainController struct {
 }
 
 func (this *MainController) Get() {
-	this.TplNames = "../go_test/view/index.tpl"
-	// this.Ctx.WriteString("hello world")
+	file, err := os.Getwd()
+	if err == nil {
+		this.TplNames = path.Join(file, "view/index.tpl")
+	}
 }
