@@ -9,10 +9,15 @@ import (
 func main() {
 	core.Router("/", &controller.MainController{})
 	core.Router("/welcome", &controller.Welcome{})
-	core.Router("/json", &common.Common{})
+	core.Router("/json1", &common.Common{})
+	json := &controller.JsonController{}
+	core.Router("/json", json)
+	core.Router("/j", json)
+
 	core.SetStaticPath("/css", "static/css")
 	core.SetStaticPath("/font", "static/font")
 	core.SetStaticPath("/icon", "static/icon")
 	core.SetStaticPath("/js", "static/js")
+	core.SetStaticPath("/images", "static/img")
 	core.Run()
 }
