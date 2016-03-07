@@ -8,6 +8,8 @@ import (
 
 func main() {
 	core.Router("/", &controller.MainController{})
+	core.Router("/m", &controller.MarkDown{})
+	core.Router("/markdown", &controller.MarkDown{})
 	core.Router("/welcome", &controller.Welcome{})
 	core.Router("/json1", &common.Common{})
 	json := &controller.JsonController{}
