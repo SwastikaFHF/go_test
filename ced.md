@@ -10,4 +10,4 @@
 |  Cell 1|   Cell 2      |
 
 [name]
-[name]: https://github.com/SwastikaFHF/go_test/blob/master/README.md "测试"
+[name]: ./README.md "测试"
