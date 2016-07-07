@@ -12,6 +12,7 @@ func main() {
 	core.Router("/markdown", &controller.MarkDown{})
 	core.Router("/welcome", &controller.Welcome{})
 	core.Router("/json1", &common.Common{})
+	core.Router("/t", &controller.MarkTest{})
 	json := &controller.JsonController{}
 	core.Router("/json", json)
 	core.Router("/j", json)
