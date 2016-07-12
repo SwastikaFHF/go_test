@@ -3,7 +3,6 @@ package core
 import (
 	"encoding/json"
 	"html/template"
-	"log"
 	"net/http"
 )
 
@@ -23,15 +22,8 @@ type DealHttpInterface interface {
 
 func (this *Controller) HandleTpl() {
 	if this.TplNames != "" {
-		t, TempErr := template.ParseFiles(this.TplNames)
-		if TempErr == nil {
-			err := t.Execute(this.Ctx.ResponseWriter, this.Data)
-			if err != nil {
-				log.Println(err)
-			}
-		} else {
-			log.Println(TempErr)
-		}
+		t, _ := template.ParseFiles(this.TplNames)
+		t.Execute(this.Ctx.ResponseWriter, this.Data)
 	} else if this.Json != nil {
 		if b, err := json.Marshal(this.Json); err == nil {
 			this.Ctx.WriteByte(b)
