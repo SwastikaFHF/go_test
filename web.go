@@ -1,9 +1,9 @@
 package main
 
 import (
-	"go_test/controller"
-	"go_test/controller/common"
-	"go_test/core"
+	"go_personal_blog/controller"
+	"go_personal_blog/controller/common"
+	"go_personal_blog/core"
 )
 
 func main() {

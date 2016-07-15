@@ -1,7 +1,7 @@
 package model
 
 import (
-	"go_test/model/request"
+	"go_personal_blog/model/request"
 )
 
 type Request struct {

@@ -2,7 +2,7 @@ package controller
 
 import (
 	"github.com/russross/blackfriday"
-	"go_test/core"
+	"go_personal_blog/core"
 	"io/ioutil"
 )
 

@@ -1,7 +1,7 @@
 package controller
 
 import (
-	"go_test/core"
+	"go_personal_blog/core"
 )
 
 type JsonController struct {

@@ -1,8 +1,8 @@
 package common
 
 import (
-	"go_test/core"
-	"go_test/model"
+	"go_personal_blog/core"
+	"go_personal_blog/model"
 )
 
 type Common struct {

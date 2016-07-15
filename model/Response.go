@@ -1,7 +1,7 @@
 package model
 
 import (
-	"go_test/model/response"
+	"go_personal_blog/model/response"
 )
 
 type Response struct {
